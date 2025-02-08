@@ -13,11 +13,13 @@ interface ISendCommandRes {
   command: string
 }
 
+// https://manipulator-test2.onrender.com
+// http://localhost:8000
 
 // Мокаем запросы для локального хранения данных
 export const manipulatorApi = createApi({
   reducerPath: 'manipulatorApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }), // Используем fakeBaseQuery для имитации запросов
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://manipulator-test2.onrender.com' }), // Используем fakeBaseQuery для имитации запросов
   endpoints: (builder) => ({
     sendCommand: builder.mutation<ISendCommandRes, ISendCommandReq>({
       query: (command: ISendCommandReq) => {
