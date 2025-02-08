@@ -16,10 +16,10 @@ interface ISendCommandRes {
 // https://manipulator-test2.onrender.com
 // http://localhost:8000
 
-// Мокаем запросы для локального хранения данных
+
 export const manipulatorApi = createApi({
   reducerPath: 'manipulatorApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://manipulator-test2.onrender.com' }), // Используем fakeBaseQuery для имитации запросов
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://manipulator-test2.onrender.com' }), 
   endpoints: (builder) => ({
     sendCommand: builder.mutation<ISendCommandRes, ISendCommandReq>({
       query: (command: ISendCommandReq) => {
@@ -39,10 +39,10 @@ export const manipulatorApi = createApi({
     }),
     fetchHistory: builder.query<IHistoryCommand[], void>({
         
-      // Мокаем данные для истории команд
+   
       query: () => ({
-        url: '/history', // Путь к вашему эндпоинту
-        method: 'GET',   // Метод запроса
+        url: '/history',
+        method: 'GET',   
       }),
      
     }),

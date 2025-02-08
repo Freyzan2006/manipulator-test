@@ -1,10 +1,13 @@
 
+interface IOptimizeCommand {
+  command: string
+  count: number
+}
 
-
-export const optimizeCommandsClient = (commands: string) => {
+export const optimizeCommandsClient = (commands: string) : IOptimizeCommand[] => {
     commands = commands.toLocaleUpperCase()
 
-    const commandCount: { command: string, count: number }[] = [];
+    const commandCount: IOptimizeCommand[] = [];
     const validCommands = ["Л", "П", "В", "Н", "О", "Б"] 
     
 
@@ -34,7 +37,7 @@ export const optimizeCommandsClient = (commands: string) => {
 
 
 
-export const optimizeCommands = (commands: string) => {
+export const optimizeCommands = (commands: string) : string => {
   let result: string[] = [];  
 
   let count = 1;  

@@ -24,7 +24,7 @@ const samples = [
 
 
 
-// Начальное состояние
+
 const initialState: ManipulatorState = {
   position: { x: 0, y: 0 },
   animationSpeed: 500,
@@ -37,24 +37,24 @@ const initialState: ManipulatorState = {
   
 };
 
-// Создание среза
+
 const manipulatorSlice = createSlice({
   name: 'manipulator',
   initialState,
   reducers: {
-    // Устанавливаем новую позицию
+
     setPosition(state, action: PayloadAction<{ x: number; y: number }>) {
       state.position = action.payload;
     },
-    // Устанавливаем скорость анимации
+   
     setAnimationSpeed(state, action: PayloadAction<number>) {
       state.animationSpeed = action.payload;
     },
-    // Устанавливаем состояние движения
+   
     setIsMoving(state, action: PayloadAction<boolean>) {
       state.isMoving = action.payload;
     },
-    // Двигаем манипулятор
+  
     moveManipulator(state, action: PayloadAction<{ x: number; y: number }>) {
       state.position = action.payload;
     },
@@ -68,33 +68,33 @@ const manipulatorSlice = createSlice({
     },
 
 
-        // Команда для захвата объекта (проверка на коллизию перед захватом)
+     
         pickUpObject(state, action: PayloadAction<{ x: number; y: number }>) {
           const { x, y } = action.payload;
-          // Проверяем, есть ли объект на данной клетке
+          
           const objectToPick = state.samples.find((obj) => obj.x === x && obj.y === y);
     
           if (objectToPick) {
-            // Если объект найден, "забираем" его
+            
             state.holdingSample = objectToPick;
-            // Удаляем объект из списка samples
+           
             state.samples = state.samples.filter((obj) => obj !== objectToPick);
           } else {
             alert('На этой клетке нет объекта');
           }
         },
     
-        // Команда для отпуска объекта (проверка на коллизию перед размещением)
+      
         placeObject(state, action: PayloadAction<{ x: number; y: number }>) {
           const { x, y } = action.payload;
     
-          // Проверяем, не занята ли клетка
+       
           if (!checkCollision(state.samples, x, y)) {
             if (state.holdingSample) {
-              // Размещаем объект в новых координатах
+             
               const newObject = { ...state.holdingSample, x, y };
               state.samples.push(newObject);
-              // Обнуляем состояние "держащего объекта"
+             
               state.holdingSample = null;
             } else {
               alert('Нечего отпускать, нет объекта');
@@ -106,7 +106,7 @@ const manipulatorSlice = createSlice({
   },
 });
 
-// Экспорты действий
+
 export const {
   setPosition,
   setAnimationSpeed,
@@ -118,5 +118,5 @@ export const {
   placeObject,
 } = manipulatorSlice.actions;
 
-// Экспорт редьюсера
+
 export default manipulatorSlice.reducer;

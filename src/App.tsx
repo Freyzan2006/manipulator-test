@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './components/ux/Login';
-import CommandInput from './components/ux/CommandInput';
+
 import ManipulatorGrid from './components/ui/ManipulatorGrid';
 import CommandHistory from './components/ux/CommandHistory';
 import { Container, Box } from '@mui/material';
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuthenticated } from './store/slice/authSlice';
 import { RootState } from './store/store';
 import Account from './components/ui/Account';
+import CommandInputContainer from './components/ux/CommandInput/CommandInputContainer';
 
 const App: React.FC = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
@@ -28,25 +29,23 @@ const App: React.FC = () => {
       
       <SuccessSnackbar open = { isShow } message = 'Всё успешно выполнено' />
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: "center" }}>
-      {!isAuthenticated ? (
-        
-          <Login onLogin={handleLogin} />
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: "center", widows: 500  }}>
+        {!isAuthenticated ? (
           
-       
-      ) : (
-       
-        <>
-        <Account />
-          <Rules />
-          <CommandInput />
-          
-          <ManipulatorGrid />
-          <CommandHistory />
-        </>
-      
+            <Login onLogin={handleLogin} />
+        ) : (
         
-      )}
+          <>
+            <Account />
+            <Rules />
+            <CommandInputContainer />
+            
+            <ManipulatorGrid />
+            <CommandHistory />
+          </>
+        
+          
+        )}
       </Box>
      
     </Container>

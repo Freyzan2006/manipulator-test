@@ -7,6 +7,7 @@ const CommandHistory: React.FC = () => {
 
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка загрузки данных</div>;
+  
   console.log(history)
   return (
     <TableContainer>

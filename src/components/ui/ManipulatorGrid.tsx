@@ -9,10 +9,6 @@ const ManipulatorGrid: React.FC = () => {
   const { position, animationSpeed, gridSize, samples, holdingSample } = useSelector((state: RootState) => state.manipulator); 
   const dispatch = useDispatch<AppDispatch>(); 
 
-
-  
-
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Box sx={{ display: 'grid', gridTemplateColumns: `repeat(${gridSize}, 50px)`, gridGap: '2px' }}>
